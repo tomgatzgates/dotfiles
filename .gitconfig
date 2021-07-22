@@ -1,0 +1,51 @@
+[user]
+  name = Tom Gates
+  email = thomas.gates@shopify.com
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[core]
+  editor = subl -n -w
+  excludesfile = /Users/tom/.gitignore_global
+  commitGraph = true
+[alias]
+  cp = cherry-pick
+  st = status -s
+  cl = clone
+  ci = commit
+  co = checkout
+  br = branch
+  diff = diff --word-diff
+  dc = diff --cached
+  fo = fetch origin
+  p = push
+  pf = push --force-with-lease
+  rbh = "!f() { git rebase -i HEAD~$1; }; f"
+  rbm = rebase origin/master
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+  visual = !gitk
+  last = log -1 HEAD
+  unstage = reset HEAD --
+[credential]
+  username = tomgatzgates
+  protocol = https
+  host = github.com
+  helper =
+  helper = store --file /opt/dev/var/private/git_credential_store
+[push]
+  default = current
+[diff]
+  algorithm = patience
+[protocol]
+  version = 2
+[gc]
+  writeCommitGraph = true
+[url "https://github.com/Shopify/"]
+  insteadOf = git@github.com:Shopify/
+  insteadOf = git@github.com:shopify/
+  insteadOf = ssh://git@github.com/Shopify/
+  insteadOf = ssh://git@github.com/shopify/

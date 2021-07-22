@@ -1,0 +1,70 @@
+{
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"caret_style": "phase",
+	"font_face": "Fira Code",
+	"font_options": [],
+	"dark_theme": "Soda Dark 3.sublime-theme",
+	"light_theme": "Soda Light 3.sublime-theme",
+	"theme": "auto",
+	"color_scheme": "auto",
+	"highlight_line": true,
+	"highlight_modified_tabs": "true",
+	"ensure_newline_at_eof_on_save": true,
+	"dark_color_scheme": "Packages/GitHub Theme/schemes/GitHub Dark.sublime-color-scheme",
+	"light_color_scheme": "Packages/GitHub Theme/schemes/GitHub Light.sublime-color-scheme",
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"rulers":
+	[
+		80,
+		120
+	],
+	"folder_exclude_patterns": [
+		"**/node_modules/**",
+		".git", 
+		".hg", 
+		".svn", 
+		".Trash", 
+		".Trash-*",
+		"CVS", 
+    "**/.DS_Store",
+    "**/node_modules",
+    "**/tmp/**",
+    ".dev",
+	],
+	"binary_file_patterns": [
+		"*.dds",
+		"*.eot",
+		"*.gif",
+		"*.ico",
+		"*.jar",
+		"*.jpeg",
+		"*.jpg",
+		"*.pdf",
+		"*.png",
+		"*.swf",
+		"*.tga",
+		"*.ttf",
+		"*.zip",
+		"*.svg",
+		"build/**",
+		"tags",
+		".byebug_history",
+		"*.js.map",
+		"*.csv",
+		"tmp/*",
+		".git/",
+		"*.rbi"
+	],
+	"scroll_past_end": true,
+	"shift_tab_unindent": true,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"match_brackets_angle": true,
+	"font_size": 14,
+}
