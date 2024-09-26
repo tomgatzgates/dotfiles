@@ -9,6 +9,15 @@
   cl = clone
   ci = commit
   co = checkout
+  nb = "!f() { \
+    if [ -z \"$1\" ]; then \
+      echo \"Error: Please provide a branch name.\"; \
+      return 1; \
+    fi; \
+    current_date=$(date +\"%Y%m%d\"); \
+    branch_name=\"tg-${current_date}-$1\"; \
+    git checkout -b \"$branch_name\"; \
+  }; f"
   br = branch
   diff = diff --word-diff
   dc = diff --cached
