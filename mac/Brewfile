@@ -1,0 +1,23 @@
+# Core CLI
+brew "git"
+brew "gh"
+brew "mise"
+brew "jq"
+brew "ripgrep"
+brew "fzf"
+brew "wget"
+brew "tree"
+brew "btop"
+
+# Dev
+brew "redis"
+
+# Apps
+cask "ghostty"
+cask "visual-studio-code"
+cask "google-chrome"
+cask "1password"
+cask "docker"
+
+# Fonts
+cask "font-jetbrains-mono-nerd-font"

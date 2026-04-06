@@ -1,8 +1,23 @@
 [user]
   name = Tom Gates
-  email = thomas.gates@shopify.com
+  email = tom@tomgates.dev
 [core]
+  excludesfile = ~/.gitignore_global
+  editor = code --wait
+  autocrlf = input
   commitGraph = true
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true
+[push]
+  default = current
+[diff]
+  algorithm = patience
+[protocol]
+  version = 2
+[gc]
+  writeCommitGraph = true
 [alias]
   cp = cherry-pick
   st = status -s
@@ -29,14 +44,9 @@
   sl = stash list
   sa = stash apply
   ss = stash save
-  visual = !gitk
   last = log -1 HEAD
   unstage = reset HEAD --
-[push]
-  default = current
-[diff]
-  algorithm = patience
-[protocol]
-  version = 2
-[gc]
-  writeCommitGraph = true
+  lg = log --oneline --graph --decorate --all
+
+[include]
+  path = ~/.gitconfig.local

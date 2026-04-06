@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# editors
+*.swp
+*.swo
+.vscode/
+.idea/
+*.iml
+.cursor/
+
+# env / secrets
+.env
+.env.local
+.env*.local
+
+# ruby/rails
+*.gem
+/tmp/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# node
+node_modules/
+npm-debug.log*
+
+# mise
+.mise.local.toml
+
+# claude
+.claude/settings.local.json
+
+# misc
+*.log
+Thumbs.db

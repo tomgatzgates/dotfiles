@@ -1,0 +1,24 @@
+# ~/.gitconfig.local — machine-local git settings
+# This file is included by dotfiles/gitconfig via [include] path = ~/.gitconfig.local
+# It is NOT tracked in the dotfiles repo.
+#
+# To use: cp gitconfig.local.template ~/.gitconfig.local
+# install.sh creates this file automatically with an empty template.
+
+# Override user email on a work machine:
+# [user]
+#   email = work@company.com
+
+# Credential helpers added by `gh auth login`:
+# [credential "https://github.com"]
+#   helper =
+#   helper = !/usr/bin/gh auth git-credential
+# [credential "https://gist.github.com"]
+#   helper =
+#   helper = !/usr/bin/gh auth git-credential
+
+# GPG signing (if you use it):
+# [user]
+#   signingkey = YOUR_KEY_ID
+# [commit]
+#   gpgsign = true
