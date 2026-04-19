@@ -33,7 +33,19 @@ git clone https://github.com/tomgatzgates/dotfiles ~/code/dotfiles
 ```
 Wait for the user to confirm they've cloned it before proceeding.
 
-## Step 3: Run install.sh
+## Step 3: 1Password sign-in (full profile only)
+
+Skip this step for minimal and managed profiles.
+
+Tell the user:
+
+> Before running install.sh, open the 1Password app and make sure you're signed in. The install script will pause and prompt you to confirm — or type "skip" to continue without 1Password features (e.g. on a server or machine where 1Password isn't installed).
+>
+> 1Password is used to restore `~/.ssh/config` from your vault. If you skip it, you'll need to set up `~/.ssh/config` manually from `ssh/config.template`.
+
+Wait for the user to confirm they're ready before continuing.
+
+## Step 4: Run install.sh
 
 For **full**:
 ```bash
@@ -52,7 +64,7 @@ sh ~/code/dotfiles/install.sh --managed
 
 If the script exits non-zero, show the error and stop. Do not proceed to the next step.
 
-## Step 4: Handle gh auth (full profile only)
+## Step 5: Handle gh auth (full profile only)
 
 Skip this step for minimal and managed profiles.
 
@@ -75,7 +87,7 @@ If not authenticated:
    ```
    This moves the credential blocks into `~/.gitconfig.local` interactively — follow its prompts.
 
-## Step 5: Verify
+## Step 6: Verify
 
 ```bash
 sh ~/code/dotfiles/scripts/verify.sh
@@ -83,7 +95,7 @@ sh ~/code/dotfiles/scripts/verify.sh
 
 Report the results. If any checks fail, explain what to do based on the output.
 
-## Step 6: Commit and push if needed
+## Step 7: Commit and push if needed
 
 ```bash
 git -C ~/code/dotfiles status --short

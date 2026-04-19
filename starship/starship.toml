@@ -1,0 +1,35 @@
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
+
+[python]
+disabled = true
+
+[package]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[php]
+disabled = true
+
+[swift]
+disabled = true
+
+[terraform]
+disabled = true
+
+[helm]
+disabled = true
+
+[docker_context]
+disabled = true

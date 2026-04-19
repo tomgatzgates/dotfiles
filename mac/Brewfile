@@ -2,6 +2,8 @@
 brew "git"
 brew "gh"
 brew "mise"
+cask "1password-cli"
+brew "starship"
 brew "jq"
 brew "ripgrep"
 brew "fzf"
@@ -11,13 +13,17 @@ brew "btop"
 
 # Dev
 brew "redis"
+brew "neovim"
 
 # Apps
 cask "ghostty"
 cask "visual-studio-code"
+cask "sublime-text"
+cask "zed"
 cask "google-chrome"
 cask "1password"
 cask "docker"
+cask "linearmouse"
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"

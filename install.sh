@@ -60,6 +60,11 @@ fi
 # full and minimal profiles
 ln -sf "$DOTFILES/gitconfig" ~/.gitconfig
 ln -sf "$DOTFILES/gitignore_global" ~/.gitignore_global
+mkdir -p ~/.config/mise
+ln -sf "$DOTFILES/mise/config.toml" ~/.config/mise/config.toml
+mise trust "$DOTFILES" >/dev/null 2>&1 || true
+mkdir -p ~/.config
+ln -sf "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
 
 # Bootstrap ~/.gitconfig.local for machine-local overrides (credential helpers, etc.)
 if [ ! -f ~/.gitconfig.local ]; then
@@ -78,6 +83,13 @@ for rc in ~/.zshrc ~/.bashrc; do
   grep -qF "dotfiles/aliases.sh" "$rc" || echo "source $DOTFILES/aliases.sh" >> "$rc"
 done
 
+# Starship prompt init (idempotent)
+for rc in ~/.zshrc ~/.bashrc; do
+  [ -f "$rc" ] || continue
+  grep -qF "starship init" "$rc" || echo 'eval "$(starship init ${SHELL##*/})"' >> "$rc"
+  grep -qF "mise activate" "$rc" || echo 'eval "$(mise activate ${SHELL##*/})"' >> "$rc"
+done
+
 # Full install: packages and apps
 if [ "$PROFILE" = "full" ]; then
   case "$OS" in
@@ -94,6 +106,7 @@ if [ "$PROFILE" = "full" ]; then
         eval "$("$BREW_PREFIX/bin/brew" shellenv)"
       fi
       brew bundle --file="$DOTFILES/mac/Brewfile"
+      sh "$DOTFILES/mac/mac_defaults.sh"
       ;;
     Linux)
       sh "$DOTFILES/linux/packages.sh"
@@ -101,6 +114,41 @@ if [ "$PROFILE" = "full" ]; then
   esac
 else
   echo "Minimal profile: skipping package installs."
+fi
+
+# LazyVim: bootstrap neovim config if not already present
+if command -v nvim >/dev/null 2>&1 && [ ! -d ~/.config/nvim ]; then
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
+  echo "LazyVim: installed to ~/.config/nvim"
+fi
+
+# 1Password: prompt to sign in before op-backed steps.
+# Type "skip" to continue without 1Password features (e.g. on machines without 1Password).
+OP_ENABLED=0
+if command -v op >/dev/null 2>&1; then
+  printf '\n1Password CLI is available. Sign in to 1Password now if needed, then press Enter.\nType "skip" to skip 1Password features: '
+  read OP_CHOICE
+  if [ "$OP_CHOICE" = "skip" ]; then
+    echo "1Password: skipping"
+  elif op account get >/dev/null 2>&1; then
+    OP_ENABLED=1
+    echo "1Password: signed in"
+  else
+    echo "1Password: not signed in — skipping 1Password features"
+  fi
+fi
+
+# Restore ~/.ssh/config from 1Password if not present
+if [ ! -f ~/.ssh/config ]; then
+  mkdir -p ~/.ssh && chmod 700 ~/.ssh
+  if [ "$OP_ENABLED" = "1" ]; then
+    op document get "ssh-config" > ~/.ssh/config && chmod 600 ~/.ssh/config \
+      && echo "ssh/config: restored from 1Password" \
+      || echo "ssh/config: op document get failed — copy ssh/config.template to ~/.ssh/config manually"
+  else
+    echo "ssh/config: skipped — copy ssh/config.template to ~/.ssh/config manually"
+  fi
 fi
 
 echo "Done ($PROFILE). Open a new shell or run: source $DOTFILES/aliases.sh"

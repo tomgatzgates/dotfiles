@@ -1,0 +1,20 @@
+# SSH config template — copy to ~/.ssh/config and fill in your values.
+# ~/.ssh/config is NOT tracked in dotfiles (contains hostnames/IPs).
+# Restore from 1Password: op document get "ssh-config" > ~/.ssh/config && chmod 600 ~/.ssh/config
+# Backup to 1Password:    op document create ~/.ssh/config --title "ssh-config"
+
+# Example named host
+# Host myserver
+#   HostName 192.168.x.x
+#   User myuser
+
+Host *
+  # 1Password SSH agent — manages keys so they never sit on disk
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+  SetEnv TERM=xterm-256color
+  SetEnv COLORTERM=truecolor
+  ServerAliveInterval 15
+  ServerAliveCountMax 6
